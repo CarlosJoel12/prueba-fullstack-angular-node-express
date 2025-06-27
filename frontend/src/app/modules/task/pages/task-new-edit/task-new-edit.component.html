@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="text-primary text-center mb-3">
+            {{ isEdit ? 'Actualizar Tarea' : 'Agregar Tarea' }}
+          </h2>
+          <mat-divider class="mb-4"></mat-divider>
+
+          <form [formGroup]="form">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
+              <mat-label>Título</mat-label>
+              <input
+                matInput
+                placeholder="Ingrese el título"
+                type="text"
+                [formControlName]="keyFormTitle"
+              />
+              <mat-error *ngIf="form.get(keyFormTitle)?.hasError('required') && form.get(keyFormTitle)?.touched">
+                El título es obligatorio
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100 mb-3">
+              <mat-label>Descripción</mat-label>
+              <input
+                matInput
+                placeholder="Ingrese la descripción"
+                type="text"
+                [formControlName]="keyFormDescription"
+              />
+              <mat-error *ngIf="form.get(keyFormDescription)?.hasError('required') && form.get(keyFormDescription)?.touched">
+                La descripción es obligatoria
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100 mb-4">
+              <mat-label>Estado</mat-label>
+              <mat-select [formControlName]="keyFormStatus">
+                <mat-option value="pendiente">Pendiente</mat-option>
+                <mat-option value="completado">Completado</mat-option>
+              </mat-select>
+              <mat-error *ngIf="form.get(keyFormStatus)?.hasError('required') && form.get(keyFormStatus)?.touched">
+                El estado es obligatorio
+              </mat-error>
+            </mat-form-field>
+
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-outline-secondary" routerLink="/task">
+                Volver
+              </button>
+              <button type="button" class="btn btn-primary" (click)="validateForm()">
+                {{ isEdit ? 'Actualizar' : 'Guardar' }}
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

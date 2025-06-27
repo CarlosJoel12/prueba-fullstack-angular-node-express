@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+<div class="container mt-4 w-100 card">
+  <div class="header-task">
+    <h2 class="text-primary mb-0">Lista de Tareas</h2>
+
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Filtrar estado</mat-label>
+        <mat-select >
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="aceptada">Aceptada</mat-option>
+          <mat-option value="denegada">Denegada</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+      <button type="button" class="btn btn-primary" (click)="addTask()">
+        Agregar Tarea
+      </button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let task">{{ task.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Título</th>
+      <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let task">{{ task.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let task">
+        <span
+          class="badge bg-{{
+            task.status === 'completado' ? 'success' : 'warning'
+          }}"
+        >
+          {{ task.status }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let task">
+        <button
+          type="button"
+          class="btn btn-outline-info btn-sm me-2"
+          (click)="editTask(task.id)"
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger btn-sm"
+          (click)="deleteTask(task.id)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <h5 class="text-primary text-center mt-3" *ngIf="listTask.length == 0">
+    No hay Tareas para mostrar
+  </h5>
+</div>

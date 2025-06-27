@@ -1,0 +1,14 @@
+.container {
+  padding: 20px;
+}
+
+.header-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+}

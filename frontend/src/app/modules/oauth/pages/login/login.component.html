@@ -1,0 +1,50 @@
+<div class="content-oAuth">
+  <div class="body-oAuth">
+    <img
+      class="logo-oAuth"
+      src="../../../../../assets/iniciar-sesion.png"
+      alt="login img"
+    />
+    <h1 class="mb-2">Login</h1>
+    <form [formGroup]="form">
+      <div class="w-100 mt-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Cooreo electrónico </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese correo electrónico"
+            type="text"
+            [formControlName]="keyFormEmail"
+          />
+          <mat-error
+            *ngIf="
+              form.get(keyFormEmail)?.hasError('required') &&
+              form.get(keyFormEmail)?.touched
+            "
+          >El correo electrónico es obligatorio</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="w-100">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Contraseña </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese contraseña"
+            type="password"
+            [formControlName]="keyFormPassword"
+          />
+          <mat-error
+            *ngIf="
+              form.get(keyFormPassword)?.hasError('required') &&
+              form.get(keyFormPassword)?.touched
+            "
+          >La contraseña es obligatoria</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="d-grid gap-2 mt-2">
+        <button type="button" class="btn btn-primary btn-lg" (click)="validateLogin()">Entrar</button>
+      </div>
+      <p class="mt-3">¿No tienes cuenta? <a routerLink="/login/signIn">Regístrate</a></p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="content-oAuth">
+  <div class="body-oAuth">
+    <img
+      class="logo-oAuth"
+      src="../../../../../assets/perfil-del-usuario.png"
+      alt="login img"
+    />
+    <h1 class="mb-2">Registrar Usuario</h1>
+    <form [formGroup]="form">
+      <div class="w-100 mt-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Nombre </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese nombre"
+            type="text"
+            [formControlName]="keyFormName"
+          />
+          <mat-error
+            *ngIf="
+              form.get(keyFormName)?.hasError('required') &&
+              form.get(keyFormName)?.touched
+            "
+            >El nombre es obligatorio</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="w-100">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Correo electrónico </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese correo electrónico"
+            type="text"
+            [formControlName]="keyFormEmail"
+          />
+           <mat-error
+            *ngIf="
+              form.get(keyFormEmail)?.hasError('email') &&
+              !form.get(keyFormEmail)?.hasError('required')
+            "
+            >Introduce una dirección de correo electrónico válida</mat-error
+          >
+          <mat-error
+            *ngIf="
+              form.get(keyFormEmail)?.hasError('required') &&
+              form.get(keyFormEmail)?.touched
+            "
+            >El correo electrónico es obligatorio</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="w-100">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Contraseña </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese contraseña"
+            type="password"
+            [formControlName]="keyFormPassword"
+          />
+          <mat-error
+            *ngIf="
+              form.get(keyFormPassword)?.hasError('required') &&
+              form.get(keyFormPassword)?.touched
+            "
+            >La contraseña es obligatoria</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="w-100">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label> Repetir Contraseña </mat-label>
+          <input
+            matInput
+            placeholder="Ingrese contraseña de nuevo"
+            type="password"
+            [formControlName]="keyFormConfirmPassword"
+          />
+          <mat-error
+            *ngIf="
+              form.get(keyFormConfirmPassword)?.hasError('required') &&
+              form.get(keyFormConfirmPassword)?.touched
+            "
+            >Repetir la contraseña es obligatoria</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="d-grid gap-2 mt-2 mb-3">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg"
+          (click)="registerUser()"
+        >
+          Aceptar
+        </button>
+      </div>
+      <a routerLink="/login">Volver</a>
+    </form>
+  </div>
+</div>
